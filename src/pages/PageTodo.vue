@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-
+  <q-page padding>
+    <p>Todo</p>
   </q-page>
 </template>
 
@@ -9,3 +9,6 @@
 export default {
 }
 </script>
+
+<style scoped>
+</style>

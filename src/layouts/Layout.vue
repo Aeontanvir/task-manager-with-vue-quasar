@@ -1,0 +1,84 @@
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated>
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+
+        <q-toolbar-title>
+          Quasar App
+        </q-toolbar-title>
+
+        <div>Quasar v</div>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+      class="bg-grey-1"
+    >
+      <q-list>
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+          Essential Links
+        </q-item-label>
+
+        <q-item
+          to="/"
+          exact
+          clickable
+        >
+          <q-item-section avatar>
+            <q-icon name="list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Todo</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          to="/settings"
+          exact
+          clickable
+        >
+          <q-item-section avatar>
+            <q-icon name="settings" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Settings</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script>
+
+export default {
+  name: 'Layout',
+  data () {
+    return {
+      leftDrawerOpen: false
+    }
+  },
+  methods: {
+    toggleLeftDrawer () {
+      this.leftDrawerOpen = !this.leftDrawerOpen
+    }
+  }
+}
+</script>
