@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -11,50 +11,48 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="absolute-center">
+          Task Manager
         </q-toolbar-title>
-
-        <div>Quasar v</div>
       </q-toolbar>
     </q-header>
+    <q-footer elevated>
+      <q-tabs>
+        <q-route-tab
+          v-for="nav in navs"
+          :key="nav"
+          :to="nav.to"
+          :icon="nav.icon"
+          :label="nav.label"
+        />
+      </q-tabs>
+    </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
+      :width="250"
       bordered
-      class="bg-grey-1"
+      class="bg-primary"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
+      <q-list dark>
+        <q-item-label header>
+          Navigation
         </q-item-label>
 
         <q-item
-          to="/"
+          v-for="nav in navs"
+          :key="nav"
+          :to="nav.to"
+          class="text-grey-4"
           exact
           clickable
         >
           <q-item-section avatar>
-            <q-icon name="list" />
+            <q-icon :name="nav.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Todo</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          to="/settings"
-          exact
-          clickable
-        >
-          <q-item-section avatar>
-            <q-icon name="settings" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Settings</q-item-label>
+            <q-item-label>{{nav.label}}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -72,7 +70,12 @@ export default {
   name: 'Layout',
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      navs: [
+        { label: 'Todo', icon: 'list', to: '/' },
+        { label: 'Settings', icon: 'settings', to: '/settings' },
+        { label: 'About', icon: 'info', to: '/about' }
+      ]
     }
   },
   methods: {
@@ -82,3 +85,17 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
+  }
+}
+.q-drawer {
+  .q-router-link--exact-active {
+    color: white !important;
+    font-weight: bold;
+  }
+}
+</style>
