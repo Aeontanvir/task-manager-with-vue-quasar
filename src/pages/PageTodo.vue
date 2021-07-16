@@ -53,12 +53,9 @@
 
 export default {
   name: 'PageTodo',
-  data () {
-    return {
-      tasks: [
-        { id: 1, name: 'Go to shop', completed: false, dueDate: '2019/05/05', dueTime: '18:30' },
-        { id: 2, name: 'Go to shop', completed: false, dueDate: '2019/05/05', dueTime: '18:30' }
-      ]
+  computed: {
+    tasks () {
+      return this.$store.getters.tasks
     }
   }
 }
