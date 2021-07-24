@@ -7,16 +7,16 @@
   >
     <q-item-section
       side
-      top
+      center
     >
       <q-icon
-        color="primary"
+        color="secondary"
         v-if="task.completed"
         size="md"
         name="task_alt"
       />
       <q-icon
-        color="secondary"
+        color="primary"
         v-else
         size="md"
         name="radio_button_unchecked"

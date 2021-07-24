@@ -1,15 +1,10 @@
 <template>
   <q-page class="q-pa-md">
     <q-list
+      v-if="Object.keys(tasks).length"
       bordered
       separator
     >
-      <!-- <p
-        v-for="(task , key) in tasks"
-        :key="key"
-      >
-        {{key}} {{task}}
-      </p> -->
       <task
         v-for="(task , key) in tasks"
         :key="key"
@@ -29,7 +24,7 @@
     </div>
 
     <q-dialog v-model="showAddTask">
-      <add-task></add-task>
+      <add-task @close="showAddTask = false"></add-task>
     </q-dialog>
 
   </q-page>
