@@ -18,6 +18,20 @@
       >
       </task>
     </q-list>
+    <div class="absolute-bottom text-center q-mb-lg">
+      <q-btn
+        round
+        color="primary"
+        size="lg"
+        icon="add"
+        @click="showAddTask=true"
+      />
+    </div>
+
+    <q-dialog v-model="showAddTask">
+      <add-task></add-task>
+    </q-dialog>
+
   </q-page>
 </template>
 
@@ -25,8 +39,14 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'PageTodo',
+  data () {
+    return {
+      showAddTask: false
+    }
+  },
   components: {
-    task: require('components/Tasks/Task.vue').default
+    task: require('components/Tasks/Task.vue').default,
+    AddTask: require('components/Tasks/modals/AddTask.vue').default
   },
   computed: {
     ...mapGetters({
